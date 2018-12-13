@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping-list</title>
+</head>
+<body>
+    <h1>Shopping-list</h1>
+    <ul>
+        {{PRODUCT_LIST}}
+    </ul>
+    <form method="POST" action="/">
+        <input type="text" name="product" placeholder="Quoi ?">
+        <input type="number" name="numberOf" placeholder="combien ?">
+        <button>Add</button>
+    </form>
+</body>
+</html>
