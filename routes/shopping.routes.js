@@ -1,5 +1,7 @@
 const routes = [
     {url : '/', controller : 'shopping.controller', action : 'index'},
+    { url : '/shopping/add', controller : 'shopping.controller', action : 'add' },
+    { url : '/shopping/delete', controller : 'shopping.controller', action : 'delete' },
 ];
 
 const router = (req, res) =>{

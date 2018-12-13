@@ -11,10 +11,66 @@
     <ul>
         {{PRODUCT_LIST}}
     </ul>
-    <form method="POST" action="/">
-        <input type="text" name="product" placeholder="Quoi ?">
-        <input type="number" name="numberOf" placeholder="combien ?">
-        <button>Add</button>
+    <form method="" action="">
+        <input type="text" id="product" name="product" placeholder="Quoi ?">
+        <input type="number" id="number" name="numberOf" placeholder="combien ?">
+        <button id="trigger-add">Add</button>
     </form>
+
+    <script type="text/javascript">
+    let buttons = document.querySelectorAll('#trigger-delete');
+    let buttonAdd = document.querySelector('#trigger-add');
+    buttons.forEach((button)=>{
+        button.addEventListener('click', (e)=>{
+            e.preventDefault();
+            let id = button.dataset.id;
+            fetch(
+                'http://localhost:8001/shopping/delete',
+                {
+                    headers : new Headers(),
+                    method : 'POST',
+                    body : JSON.stringify({
+                        id : id,
+                    })
+                }
+            ).then((result) =>{
+                return result.json();
+            }).then((result)=>{
+                if(result && result.status === 200) {
+                    window.location.href = '/';
+                }
+                else {
+                    alert(result.message);
+                }
+            });
+        }, false);
+    });
+
+    buttonAdd.addEventListener('click', (e)=>{
+        e.preventDefault();
+        let inputProduct = document.querySelector('#product').value;
+        let inputNumber = document.querySelector('#number').value;
+        fetch(
+            'http://localhost:8001/shopping/add',
+            {
+                headers : new Headers(),
+                method : 'POST',
+                body : JSON.stringify({
+                    product : inputProduct,
+                    numberOf : inputNumber
+                })
+            }
+        ).return((result)=>{
+            return result.json();
+        }).then((result)=>{
+            console.log(result)
+            if(result && result.status === 200){
+                window.location.href = '/';
+            }else{
+                alert(result.message);
+            }
+        });
+    }, false);
+    </script>
 </body>
 </html>
