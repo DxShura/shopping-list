@@ -60,7 +60,7 @@
                     numberOf : inputNumber
                 })
             }
-        ).return((result)=>{
+        ).then((result)=>{
             return result.json();
         }).then((result)=>{
             console.log(result)
